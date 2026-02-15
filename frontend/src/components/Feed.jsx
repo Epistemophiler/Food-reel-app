@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import VideoCard from "./VideoCard";
 import axios from "axios";
+import api from "../api/axios";
 
 const Feed = () => {
   const containerRef = useRef(null);
@@ -34,7 +35,7 @@ const Feed = () => {
   }, [foodItm]);
 
   async function fetchFood() {
-    await axios
+    await api
       .get("/api/food", { withCredentials: true })
       .then((res) => {
         setFoodItm(res.data.foodItem);
@@ -43,7 +44,7 @@ const Feed = () => {
   }
 
   async function fetchLikes() {
-    await axios
+    await api
       .get("/api/food/liked", { withCredentials: true })
       .then((res) => {
         setlikedId(res.data);
@@ -52,7 +53,7 @@ const Feed = () => {
   }
 
   async function fetchSaves() {
-    await axios.get("api/food/save", { withCredentials: true }).then((res) => {
+    await api.get("api/food/save", { withCredentials: true }).then((res) => {
       setSaveId(res.data?.saveFood);
     });
   }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { data, Link, useLocation, useParams } from "react-router-dom";
-import axios from "axios";
 import { BsPlusSquareDotted } from "react-icons/bs";
 import Back from "../components/Back";
 import Cart from "../components/Cart";
 import { useCart } from "../context/cartContext";
+import api from "../api/axios";
 
 function Profile() {
   const { id } = useParams();
@@ -17,7 +17,7 @@ function Profile() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function fetch() {
-    axios
+    api
       .get(`/api/food-partner/${id}`, {
         withCredentials: true,
       })
@@ -41,7 +41,7 @@ function Profile() {
   }, [fetch, id, location.pathname]);
 
   async function handleDelete(_id) {
-    const res = await axios.delete(`/api/food/`, {
+    const res = await api.delete(`/api/food/`, {
       data: { _id },
       withCredentials: true,
     });

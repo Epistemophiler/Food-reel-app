@@ -2,7 +2,7 @@ import React, { useState, useEffect, useEffectEvent } from "react";
 import Feed from "../components/Feed";
 import VideoCard from "../components/VideoCard";
 import { FaHome, FaBookmark } from "react-icons/fa";
-import axios from "axios";
+import api from "../api/axios";
 
 function Home() {
   const [tab, setTab] = useState("home");
@@ -11,7 +11,7 @@ function Home() {
 
   async function fetchSaved() {
     try {
-      const res = await axios.get("http://localhost:3000/api/food/save", {
+      const res = await api.get("http://localhost:3000/api/food/save", {
         withCredentials: true,
       });
       setSaved(res.data.savedFoodEntries);

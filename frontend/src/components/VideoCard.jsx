@@ -11,6 +11,7 @@ import axios from "axios";
 import Back from "./Back";
 import Cart from "./Cart";
 import { useCart } from "../context/cartContext";
+import api from "../api/axios";
 
 const VideoCard = ({
   src,
@@ -39,7 +40,7 @@ const VideoCard = ({
 
   async function handleLikes() {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         "http://localhost:3000/api/food/like",
         { foodId: _id },
         { withCredentials: true },
@@ -54,7 +55,7 @@ const VideoCard = ({
 
   async function toggleSave() {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         "http://localhost:3000/api/food/save",
         { foodId: _id },
         { withCredentials: true },

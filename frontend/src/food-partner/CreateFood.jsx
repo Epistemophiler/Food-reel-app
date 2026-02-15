@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Back from "../components/Back";
+import api from "../api/axios";
 
 function CreateFood() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ function CreateFood() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState("")
+  const [price, setPrice] = useState("");
   const fileRef = useRef(null);
 
   const handleVideoChange = (e) => {
@@ -31,10 +31,10 @@ function CreateFood() {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("video", videoFile);
-    formData.append("price",price);
+    formData.append("price", price);
 
     try {
-      const res = await axios.post("/api/food", formData, {
+      const res = await api.post("/api/food", formData, {
         withCredentials: true,
       });
 

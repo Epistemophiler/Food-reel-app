@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import api from "../api/axios";
 
 const UserLogin = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const UserLogin = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const res = await axios
+    const res = await api
       .post(
         "/api/auth/user/login",
         {

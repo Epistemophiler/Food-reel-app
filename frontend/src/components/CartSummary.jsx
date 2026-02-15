@@ -3,6 +3,7 @@ import Back from "./Back";
 import { useCart } from "../context/cartContext";
 import axios from "axios";
 import { data, useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 function CartSummary() {
   const { cart, clearCart, updateQty } = useCart();
@@ -17,7 +18,7 @@ function CartSummary() {
   }, [cart]);
 
   async function fethFoodDetails(item) {
-    const res = await axios.get("/api/food/byId", {
+    const res = await api.get("/api/food/byId", {
       params: {
         foodIds: item.map((e) => e.foodId),
         quantity: item.map((e) => e.quantity),

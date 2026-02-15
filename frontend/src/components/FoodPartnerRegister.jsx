@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import api from "../api/axios";
 
 const FoodPartnerRegister = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const FoodPartnerRegister = () => {
       password,
     });
 
-    const res = await axios
+    const res = await api
       .post(
         "/api/auth/food-partner/register",
         {
